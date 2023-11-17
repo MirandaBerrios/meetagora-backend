@@ -11,7 +11,7 @@ Para que el software pueda funcionar son necesarios ciertos requerimientos:
 
 
 # Disponibilidad
-Meetagora-backend no necesita ser instalado para poder disgrutar de la aplicación, ya que está desplegado en la nuve,
+Meetagora-backend no necesita ser instalado para poder disgrutar de la aplicación, ya que está desplegado en la nube,
 puedes simplemente descargar nuestra app desde el siguiente link (https://drive.google.com/drive/folders/1PiKFIPXpObn2sUkcR6kRHIQ_s9fMHFBa?usp=drive_link).
 
 
