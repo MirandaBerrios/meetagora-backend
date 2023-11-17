@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <link rel="stylesheet" href="../static/css/report.css">-->
+     <link th:href="@{/css/report.css}" rel="stylesheet">
+    <title>Meetagora</title>
+    <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"crossorigin="anonymous">
+    <link rel="stylesheet"href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" >
+    <link rel="stylesheet"href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" >
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+<style>form div i {margin-left: -30px;cursor: pointer;}</style>
+
+</head>
+    <body class="bg-purple" >
+        
+    
+        
+        <div class="custom-navbar">
+
+            <div class="brand-logo">
+                    <img src="https://backend-gkhesykiqa-tl.a.run.app/meetagora-services/gcp/images/meetagora-logo-white.png" width="20%">
+            </div>
+            
+            <div  class="buttons-register col-8">
+                <div style="border: 1px solid white;margin: 0 1em 0 1em;width: 10%;color:white;">
+                    <p id="userName" style="color: white;text-align: center;align-items: center;">
+                        @username
+                    </p>
+                </div>
+                <div>
+                    <button  data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="endSessionReport()"> Cerrar sesión </button>
+                </div>
+             
+            </div>
+
+        </div>
+
+        <div class="col-10 mr-auto ml-auto mh-50 badge-light" style="min-height: 60%;">
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Registro por alumno</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Registro por profesor</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Dashboard de mensajes</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">label2</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content">
+                <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <table id="example1" class="display table-bordered m-auto pb-1" >
+                        <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Día</th>
+                            <th>Asignatura</th>
+                            <th>Válida</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr th:each ="item : ${reportUser}">
+                            <td th:text ="${item.email}"></td>
+                            <td th:text ="${item.fecha}"></td>
+                            <td th:text ="${item.hora}"></td>
+                            <td th:text ="${item.dia}"></td>
+                            <td th:text ="${item.asignatura}"></td>
+                            <td th:text ="${item.valida}"></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Email</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Día</th>
+                            <th>Asignatura</th>
+                            <th>Válida</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <table id="example" class="display table-bordered m-auto pb-1" >
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Fecha</th>
+                                <th>Día</th>
+                                <th>Alumnos presentes</th>
+                                <th>Asignatura</th>
+                                <th>Válidas</th>
+                                <th>No válidas</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr th:each ="item : ${reportSubject}">
+                                <td th:text ="${item.email}"></td>
+                                <td th:text ="${item.fecha}"></td>
+                                <td th:text ="${item.dia}"></td>
+                                <td th:text ="${item.presentes}"></td>
+                                <td th:text ="${item.asignatura}"></td>
+                                <td th:text ="${item.suma_validas}"></td>
+                                <td th:text ="${item.suma_no_validas}"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Email</th>
+                                <th>Fecha</th>
+                                <th>Día</th>
+                                <th>Alumnos presentes</th>
+                                <th>Asignatura</th>
+                                <th>Válidas</th>
+                                <th>No válidas</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+                </div>
+                <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+
+                </div>
+                <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+
+                </div>
+            </div>
+            
+        </div>
+          
+
+         
+       
+
+
+
+<script href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"></script> 
+<script>
+    var firstTabEl = document.querySelector('#myTab li:last-child a')
+    var firstTab = new bootstrap.Tab(firstTabEl)
+    firstTab.show()
+  </script>
+<script>
+
+
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend:    'copyHtml5',
+                text:      '<i class="fa fa-files-o"></i>',
+                titleAttr: 'Copy'
+            },
+            {
+                extend:    'excelHtml5',
+                text:      '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: 'Excel'
+            },
+            {
+                extend:    'csvHtml5',
+                text:      '<i class="fa fa-file-text-o"></i>',
+                titleAttr: 'CSV'
+            },
+            {
+                extend:    'pdfHtml5',
+                text:      '<i class="fa fa-file-pdf-o"></i>',
+                titleAttr: 'PDF'
+            }
+        ]
+    } );
+    } );
+
+    $(document).ready(function() {
+        $('#example1').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend:    'copyHtml5',
+                    text:      '<i class="fa fa-files-o"></i>',
+                    titleAttr: 'Copy'
+                },
+                {
+                    extend:    'excelHtml5',
+                    text:      '<i class="fa fa-file-excel-o"></i>',
+                    titleAttr: 'Excel'
+                },
+                {
+                    extend:    'csvHtml5',
+                    text:      '<i class="fa fa-file-text-o"></i>',
+                    titleAttr: 'CSV'
+                },
+                {
+                    extend:    'pdfHtml5',
+                    text:      '<i class="fa fa-file-pdf-o"></i>',
+                    titleAttr: 'PDF'
+                }
+            ]
+        } );
+    } );
+
+    let userName = sessionStorage.getItem("nickname");
+    if( userName !== null ){
+        document.getElementById("userName").textContent = userName;
+    }
+
+    function endSessionReport(){
+        sessionStorage.clear();
+        window.location.replace("/meetagora-services")
+    }
+</script>
+
+        <div class="stars">
+        <div class="glowing_stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+        </div>
+        
+        <footer>
+            some footer text
+        </footer>
+</body>
+
+
+</html>

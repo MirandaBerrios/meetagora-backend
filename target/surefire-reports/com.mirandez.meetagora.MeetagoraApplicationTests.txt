@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.mirandez.meetagora.MeetagoraApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.381 s - in com.mirandez.meetagora.MeetagoraApplicationTests

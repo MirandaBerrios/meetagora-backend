@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/login-report.css">
+    <link th:href="@{/css/report.css}" rel="stylesheet">
+    <title>Meetagora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"crossorigin="anonymous">
+<style>
+  form div i {
+      margin-left: -30px;
+      cursor: pointer;
+  }
+</style>
+
+</head>
+<body>
+    <body class="bg-purple">
+        
+        <div class="stars">
+            <div class="custom-navbar">
+
+                <div class="brand-logo">
+                        <img src="https://backend-gkhesykiqa-tl.a.run.app/meetagora-services/gcp/images/meetagora-logo-white.png" width="20%">
+                </div>
+                
+                <div class="buttons-register">
+                    <div id="btn-login">
+                        <button  data-bs-toggle="modal" data-bs-target="#loginModal">Ingreso administrador </button>
+                    </div>
+                        <div id="btn-singup">
+                            <button data-bs-toggle="modal" data-bs-target="#singupModal" onclick="sendRegistry()">Registrarse</button>
+                        </div>
+                </div>
+
+            </div>
+           
+                 
+            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title " id="loginModal">Inicia sesion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div  style="display: flex;width: 70%; margin: auto;">
+                    <form style="width: 100%;" action="/meetagora-services/login" id="loginForm" method="post">
+                        <div>
+                            <label>Correo electrónico</label>
+                            <input class="form-control" type="text" name="institutionaEmail" id="institutionalEmail">
+                        </div>
+                        <div>
+                            <label for="password" style="padding: 0 !important;">Contraseña </label>
+                            <div style="display: flex;padding: 0; margin: 0;">
+                            <input class="form-control" type="password" name="password" id="password" />
+                            <i class="bi bi-eye-slash" id="togglePassword"></i>
+                            </div>
+                        </div>
+                       
+                        <button type="submit" id="submit" class="btn btn-primary mt-4 w-100">
+                            Iniciar session
+                        </button>
+                        <button type="button" class="btn btn-secondary mt-2 mb-3 w-100" data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+                    </form>
+                    </div>
+                        
+                 
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="singupModal" tabindex="-1" aria-labelledby="singupModal" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title " id="singupModal">Registrarse</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div  style="display: flex;width: 70%; margin: auto;">
+                      <form id="singUpForm" style="width: 100%;">
+                          <div>
+                              <label>Correo electrónico</label>
+                              <input class="form-control" type="text" name="email" id="singUpEmail">
+                          </div>
+                        
+                          <div>
+                            <label for="re-password" style="padding: 0 !important;">Contraseña </label>
+                            <div style="display: flex;padding: 0; margin: 0;">
+                            <input class="form-control" type="password" name="re-password" id="re-password" />
+                            <i class="bi bi-eye-slash" id="toggle-re-password"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <label>Token seguridad</label>
+                            <input class="form-control" type="text" name="email" id="email">
+                        </div>
+                         
+                          <button type="submit" id="submit" class="btn btn-primary mt-4 w-100">
+                              Registrarse
+                          </button>
+                          <button type="button" class="btn btn-secondary mt-2 mb-3 w-100" data-bs-dismiss="modal">
+                              Cancelar
+                          </button>
+                      </form>
+                      </div>
+                          
+                   
+                  </div>
+                </div>
+              </div>
+
+
+        
+            <div class="glowing_stars">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+    
+            </div>
+    
+        </div>
+        <script>
+            const togglePassword = document
+                .querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+            togglePassword.addEventListener('click', () => {
+                
+                // Toggle the type attribute using
+                // getAttribure() method
+                const type = password
+                    .getAttribute('type') === 'password' ?
+                    'text' : 'password';
+                password.setAttribute('type', type);
+                // Toggle the eye and bi-eye icon
+                let element = document.getElementById('togglePassword')
+                if(element.classList.contains('bi-eye-slash')){
+                    element.classList.remove('bi-eye-slash')
+                    element.classList.add('bi-eye')
+                }else{
+                    element.classList.remove('bi-eye')
+                    element.classList.add('bi-eye-slash')
+                }
+            });
+
+            const toggleRePassword = document
+                .querySelector('#toggle-re-password');
+            const repassword = document.querySelector('#re-password');
+            toggleRePassword.addEventListener('click', () => {
+                const type = repassword
+                    .getAttribute('type') === 'password' ?
+                    'text' : 'password';
+                repassword.setAttribute('type', type);
+
+                let element = document.getElementById('toggle-re-password')
+                if(element.classList.contains('bi-eye-slash')){
+                    element.classList.remove('bi-eye-slash')
+                    element.classList.add('bi-eye')
+                }else{
+                    element.classList.remove('bi-eye')
+                    element.classList.add('bi-eye-slash')
+                }
+            });
+        </script>
+    <script>
+
+        let respuesta;
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío por defecto del formulario
+
+            // Obtener los valores de los campos
+            const email = document.getElementById('institutionalEmail').value;
+            const password = document.getElementById('password').value;
+
+            // Crear un objeto con los datos
+            const formData = {
+                institutionalEmail: email,
+                password: password
+            };
+
+            // Enviar los datos al endpoint
+            fetch('/meetagora-services/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        console.log("No ha sido exitosa");
+                    }
+                    return response.json(); // Devolver la promesa de datos JSON
+                })
+                .then(data => {
+                    //console.log(data.responseBody);
+                    let body = data.responseBody;
+                    sessionStorage.setItem("nickname", body.nickname);
+                    sessionStorage.setItem("token", body.token);
+                    window.location.replace("home_dashboard");// Mostrar los datos obtenidos
+                })
+                .catch(error => {
+                    console.error('Error al enviar el formulario:', error);
+                });
+        });
+
+        document.getElementById("singUpForm").addEventListener('submit', function (event){
+            event.preventDefault();
+
+        })
+
+    </script>
+    </body>
+</body>
+</html>

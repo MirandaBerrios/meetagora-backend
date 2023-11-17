@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia</title>
+    <link th:href="@{/css/asistencia.css}" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/asistencia.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--    <link rel="stylesheet" href="./asistencia.css"> -->
+
+
+
+    <script th:inline="javascript">
+        var token = [[${token}]]
+        let listStudent = [];
+
+        function getInfoAndUpdate() {
+
+            $.ajax({
+                url: '/meetagora-services/attendance/attendance-list/'+token,
+                type: 'GET',
+                success: function(data) {
+
+                    if (data && data.length > 0) {
+                        data.forEach((element) => {
+                            let exists = listStudent.some(item => item.fullName === element.fullName);
+                            if (!exists) {
+                                addStudent(element.profileImage, element.fullName, element.nickname)
+                                listStudent.push(element)
+                            }
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.error("Error al obtener la información");
+                }
+            });
+        }
+
+
+        function addStudent(profileImage, fullName, nickname) {
+
+            const div = document.createElement('article');
+            div.classList.add('profile');
+
+            div.innerHTML = `
+                                <div class="profile-image">
+                                    <img src="https://backend-gkhesykiqa-tl.a.run.app/meetagora-services/gcp/images/${profileImage}" />
+                                </div>
+                                <div class="text-section">
+                                    <h2 class="profile-username">${fullName}</h2>
+                                    <small class="nickname">${nickname}</small>
+                                    <small class=""></small>
+                                </div>
+                            `;
+
+            const cardContainer = document.getElementById('listContainer');
+            cardContainer.appendChild(div);
+
+            const listElement = document.getElementById('orderedListStudent');
+            const li = document.createElement('div');
+            li.innerHTML = "<li> "+ fullName +" </li>"
+            listElement.appendChild(li);
+        }
+
+
+        setInterval(getInfoAndUpdate, 5000);
+    </script>
+
+</head>
+<body  >
+    <div id="navBar">
+        <div id="left-container">
+            <span><img  th:src="@{/media/logo-strech.png}" alt=""></span>
+            <!-- <span><img src="../static/media/logo-strech.png" alt=""></span> -->
+        </div>
+    </div>
+    <div id="holi" class="col-12" style="z-index: -1;">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <div id="infoContainer">
+        <span th:text="${name}">
+            Nombre de la asignatura
+        </span>
+        <span th:text="${section}">
+            section
+        </span>
+        <span th:text="${classroom}">
+            Sala
+        </span>
+
+    </div>
+    <div id="mainContainer">
+        <div id="imageContainer">
+            <img id="qr" th:src="'data:image/png;base64,' + ${qr}" alt="QR Code" />
+        </div>
+
+    </div>
+
+    <div id= "viewPort">
+        <div id="listContainer">
+            
+           
+        </div>
+        <div id="listStudent">
+            <div>
+                 <button class="button color-7" onclick="endSession()" > Finalizar Asistencia</button>
+            </div>
+
+            <table>
+                <th id="header">Nombre Alumno </th>
+                    <tr>
+                        <td > 
+                            <ol id="orderedListStudent" start="1"></ol>
+                            
+                        </td>                        
+                    </tr>
+                
+                </ol>
+            </table>
+
+        
+        </div>
+    </div>
+
+    <script>
+
+        function endSession(){
+                $.ajax({
+                    url: '/meetagora-services/attendance/endSession/' + token,
+                    type: 'GET',
+                    success: function(data) {
+                        console.log(data)
+                        if(data.code == 200){
+                        Swal.fire({
+                            title: '¿Desea finalizar la asistencia?',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: 'Si',
+                            denyButtonText: 'No',
+                            customClass: {
+                                actions: 'my-actions',
+                                cancelButton: 'order-1 right-gap',
+                                confirmButton: 'order-2',
+                                denyButton: 'order-3',
+                            },
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire('Asistencia finalizada', '', 'success')
+                            } else if (result.isDenied) {
+                                Swal.fire('Puedes seguir registrando asistencia', '', 'info')
+                            }
+                        })
+                    }
+                    console.log("token no registrado")
+                        location.href ="http://www.google.com";
+                        }
+                    ,
+                    error: function (error) {
+                        console.error("Error" + error)
+                    }
+                });
+        }
+
+
+        // function endSession() {
+        //     // let url = 'https://capstone-396701.uc.r.appspot.com/meetagora-services/attendance/endSession/' + token;
+        //
+        // })
+        //     let url = '/meetagora-services/attendance/endSession/' + token;
+        //     let xhr = new XMLHttpRequest();
+        //     xhr.open('GET', url, true);
+        //     xhr.onload = function() {
+        //         if (xhr.status == 200) {
+        //             let respuesta = JSON.parse(xhr.responseText);
+        //             let code = respuesta.code;
+        //             let message = respuesta.message;
+        //             let description = respuesta.description;
+        //             let responseBody = respuesta.responseBody;
+        //
+        //             Swal.fire({
+        //                 title: message,
+        //                 text: responseBody,
+        //                 icon: 'success',
+        //                 confirmButtonText: 'Aceptar'
+        //             })
+        //
+        //         } else {
+        //             console.error('Hubo un error al realizar la solicitud.');
+        //         }
+        //     };
+        //
+        //     // Enviar la solicitud
+        //     xhr.send();
+        // }
+    </script>
+
+</body>
+</html>
