@@ -6,9 +6,9 @@
 .bg-purple{
     background: url(http://salehriaz.com/404Page/img/bg_purple.png);
     background-repeat: repeat-x;
-    background-size: cover;
+
     background-position: left top;
-    height: 100vh;
+    height: 100%;
     
 }
 
@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between ;
-    padding-bottom:150px ;
+    padding-bottom:25px ;
 }
 
 .brand-logo{
@@ -40,7 +40,7 @@
 .stars{
     background: url(http://salehriaz.com/404Page/img/overlay_stars.svg);
     background-repeat: repeat;
-    background-size: contain;
+
     background-position: left top;
    
 }
@@ -96,16 +96,12 @@
 }
 
 
-#example{
-    
-}
 
 html, body  {
-    height: 100vh !important;
-    min-height: 100vh !important;
+    height: 100% !important;
+    min-height: 100% !important;
 
 }
-
 
 
 footer{
@@ -116,14 +112,17 @@ footer{
 }
 
 .buttons-register{
-    width: 15%;
+    width: 40%;
     display: flex;
     justify-content:right ;
     min-height: 30px;
     max-height: 50px;
     padding: 0 1rem 0 0;
 }
-
+.buttons-register div{
+    padding: 0px 1em ;
+    margin-top: 15px;
+}
 
 .buttons-register div button {
     font-size: small;
@@ -157,4 +156,195 @@ footer{
  .tab-content{
     padding: 1rem !important;
     margin: 1rem !important;
+}
+
+.product-device {
+    position: absolute;
+    right: 10%;
+    bottom: -30%;
+    width: 300px;
+    height: 540px;
+    background-color: #333;
+    border-radius: 21px;
+    transform: rotate(30deg);
+}
+
+.product-device::before {
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    bottom: 10%;
+    left: 10px;
+    content: "";
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 5px;
+}
+
+.product-device-2 {
+    top: -25%;
+    right: auto;
+    bottom: 0;
+    left: 5%;
+    background-color: #e5e5e5;
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+    flex: 1;
+}
+@media (min-width: 768px) {
+    .flex-md-equal > * {
+        flex: 1;
+    }
+}
+
+.glass{
+    /* From https://css.glass */
+    background: rgba(199, 95, 231, 0.18);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(199, 95, 231, 0.3);
+}
+
+.glass1{
+    /* From https://css.glass */
+    background: rgba(81, 239, 223, 0.18);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(81, 239, 223, 0.3);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
+.footer {
+    position: relative;
+    width: 100%;
+    background: #3586ff;
+    min-height: 160px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.social-icon,
+.menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+    list-style: none;
+}
+
+.social-icon__link {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+.social-icon__link:hover {
+    transform: translateY(-10px);
+}
+
+.menu__link {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    opacity: 0.75;
+    font-weight: 300;
+}
+
+.menu__link:hover {
+    opacity: 1;
+}
+
+.footer p {
+    color: #fff;
+    margin: 15px 0 10px 0;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url("https://i.ibb.co/wQZVxxk/wave.png");
+    background-size: 1000px 100px;
+}
+
+.wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+    0% {
+        background-position-x: 1000px;
+    }
+    100% {
+        background-positon-x: 0px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: -1000px;
+    }
+    100% {
+        background-positon-x: 0px;
+    }
 }
