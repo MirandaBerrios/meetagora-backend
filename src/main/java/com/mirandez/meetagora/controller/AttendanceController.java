@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -29,7 +28,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @RestController
-@RequestMapping("/attendance")
+@RequestMapping("/meetagora-services/attendance")
 @Log4j2
 public class AttendanceController {
 
@@ -42,8 +41,7 @@ public class AttendanceController {
     @Autowired
     WebSocketAttendanceController websocket;
 
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
+
 
     @Autowired
     private AttendaceService attendanceService;
@@ -64,10 +62,14 @@ public class AttendanceController {
         log.info("[ PRESENT ] STARTING TO SERVE");
         Attendance attendance = new Attendance();
 
-        try {
-            attendance.setLat( utilServices.getLocationSepareted(location).split(":")[0] );
-            attendance.setLng( utilServices.getLocationSepareted(location).split(":")[1] );
+        log.info("location : {}" , location );
 
+        try {
+            String locationConcate  = utilServices.getLocationSepareted(location);
+            if (locationConcate != null ) {
+                attendance.setLat(locationConcate.split(":")[0]);
+                attendance.setLng(locationConcate.split(":")[1]);
+            }
             Claims claims = Jwts.parser()
                     .setSigningKey(secretKey) // Utiliza la misma clave secreta
                     .parseClaimsJws(tokenSession)

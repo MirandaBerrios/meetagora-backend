@@ -17,7 +17,7 @@ public class User {
         private String rut;
         private String password;
         private String institutionalEmail;
-        private int scheduleId;
+        private String scheduleId;
         private int careerId;
         private String isValidate;
         private String nickname;

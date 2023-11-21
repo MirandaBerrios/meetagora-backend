@@ -428,7 +428,7 @@ public class OnBoardingServiceImpl implements OnBoardingService {
     }
 
     @Override
-    public User completeUserWithFormParams(User user, UserFormRequest userFormRequest ,int idSchedule ) {
+    public User completeUserWithFormParams(User user, UserFormRequest userFormRequest ,String idSchedule ) {
         try {
             user.setPassword(userFormRequest.getPassword());
             user.setInstitutionalEmail(userFormRequest.getInstitutionalEmail());

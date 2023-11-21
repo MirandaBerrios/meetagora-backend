@@ -12,24 +12,24 @@ import java.util.List;
 public interface AnnouncementMapper {
     @Insert({"insert into announcement " +
             "(" +
-            " subject_code," +
-            " subject_section," +
-            " user_id," +
-            " body," +
-            " delayed_time, " +
-            " title_announcement," +
-            " category, " +
-            " nickname "+
-            "  )" +
+            "subject_code," +
+            "subject_section," +
+            "user_id," +
+            "body," +
+            "delayed_time," +
+            "title_announcement," +
+            "category," +
+            "nickname"+
+            ")" +
             " values (" +
-            " #{announcement.subjectCode} ," +
-            " #{announcement.subjectSection} ," +
-            " #{announcement.userId} ," +
-            " #{announcement.body} ," +
-            " #{announcement.delayedTime} ," +
-            " #{announcement.titleAnnouncement} ," +
-            " #{announcement.category} ," +
-            " #{announcement.nickname} ," +
+            " #{announcement.subjectCode}," +
+            " #{announcement.subjectSection}," +
+            " #{announcement.userId}," +
+            " #{announcement.body}," +
+            " #{announcement.delayedTime}," +
+            " #{announcement.titleAnnouncement}," +
+            " #{announcement.category}," +
+            " #{announcement.nickname}" +
             ")"})
     boolean insertingNewAnnouncement(@Param("announcement") Announcement announcement);
     

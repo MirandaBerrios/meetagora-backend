@@ -1,7 +1,6 @@
 package com.mirandez.meetagora.controller;
 
 import com.mirandez.meetagora.entity.Announcement;
-
 import com.mirandez.meetagora.response.StandardResponse;
 import com.mirandez.meetagora.services.AnnouncementService;
 import com.mirandez.meetagora.utils.ApiMessages;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("announcement")
+@RequestMapping("/meetagora-services/announcement/")
 @Log4j2
 public class AnnouncementController {
 

@@ -47,8 +47,7 @@ public class PagesController {
     @Value("${dinamic.url}")
     String url;
 
-    @Value("${server.servlet.context-path}")
-    String context;
+
 
     @Value("${api.username}")
     String secretKey ;

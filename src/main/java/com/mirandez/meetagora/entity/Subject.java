@@ -15,7 +15,7 @@ public class Subject {
     private Date startAt;
     private Date endAt;
     private String classroomNumber;
-    private int scheduleId;
+    private String scheduleId;
     private int dayId;
 
 }

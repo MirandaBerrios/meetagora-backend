@@ -18,6 +18,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     @Override
     public boolean createAnnouncement(Announcement announcement) {
         try {
+
             if(mapper.insertingNewAnnouncement(announcement)){
                 return true;
             } else{

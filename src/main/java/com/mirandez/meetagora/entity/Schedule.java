@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Schedule {
 
-    private int scheduleId;
+    private String scheduleId;
     private String scheduleType;
     private String scheduleFile;
 }

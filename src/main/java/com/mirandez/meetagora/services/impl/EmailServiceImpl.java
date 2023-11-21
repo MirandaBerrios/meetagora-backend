@@ -22,8 +22,7 @@ public class EmailServiceImpl implements EmailService {
     @Value("${path.notification.email}")
     String pathNotification;
 
-    @Value("${server.servlet.context-path}")
-    String contextMeetagora;
+
 
     @Autowired
     TemplateEngine templateEngine;
@@ -67,7 +66,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public boolean sendPage(String url, String  email) {
 
-        url = dinamicUrl+contextMeetagora+url;
+        url = dinamicUrl+url;
         String processedHTMLTemplate =  this.constructHtmlPage(url);
 
         try {
@@ -92,7 +91,7 @@ public class EmailServiceImpl implements EmailService {
 
     private String constructHtmlValidation(String token, String nick){
         Context context = new Context();
-        String url = dinamicUrl + contextMeetagora+ pathNotification + token;
+        String url = dinamicUrl +  pathNotification + token;
         context.setVariable("url", url);
         context.setVariable("nick", nick);
         log.info("[ EMAIL ][ URL VALIDATION ] URL : {}" , url);

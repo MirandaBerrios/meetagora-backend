@@ -23,7 +23,7 @@ public interface OnBoardingService {
 
     File convertMultipartToIoFile( MultipartFile file );
 
-    User completeUserWithFormParams(User user, UserFormRequest userFormRequest, int idSchedule );
+    User completeUserWithFormParams(User user, UserFormRequest userFormRequest, String idSchedule );
     boolean insertingInChain(User user,Schedule schedule,List<Subject> subject,Career career, List<Classroom> classroomList, List<Announcement> announcementList) ;
 
     Boolean verifyIfEmailExist(String email);

@@ -25,7 +25,7 @@ public class OnBoardingUtilsImpl implements OnBoardingUtils {
     }
 
     @Override
-    public int genereateIdSchedule(Header header) {
-        return Integer.parseInt(header.getRut().substring(0,5) +header.getSemestre().substring(10,12)+ header.getSemestre().substring(0,1));
+    public String genereateIdSchedule(Header header) {
+        return (header.getRut().substring(0,8) +header.getSemestre().substring(10,12)+ header.getSemestre().substring(0,1));
     }
 }

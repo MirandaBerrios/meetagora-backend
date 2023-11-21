@@ -15,30 +15,27 @@ public class UtilServices {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    String generateToken(String toTokenaizer) {
-        try {
-            String first = passwordEncoder.encode(toTokenaizer);
-            return first.replaceAll("[!@#\\$%^&*()+=\\[\\]{};:',<>?\\\\/]", "-");
-        } catch (Exception e) {
-            log.error("[ UTIL ][ generateToken ] Error : {}", e.getMessage());
-            return toTokenaizer;
-        }
 
-    }
 
     public String getLocationSepareted(String currentLocation) {
+        try {
 
-        Pattern pattern = Pattern.compile("LatLng\\(lat: (.*), lng: (.*)\\)");
-        Matcher matcher = pattern.matcher(currentLocation);
 
-        String lat = "";
-        String lng = "";
+            Pattern pattern = Pattern.compile("LatLng\\(lat: (.*), lng: (.*)\\)");
+            Matcher matcher = pattern.matcher(currentLocation);
 
-        if (matcher.find()) {
-            lat = matcher.group(1);
-            lng = matcher.group(2);
+            String lat = "";
+            String lng = "";
+
+            if (matcher.find()) {
+                lat = matcher.group(1);
+                lng = matcher.group(2);
+            }
+            return lat + ":" + lng;
+        }catch (Exception e){
+            log.error("[ location ][ Error ] Error : {}", e );
+            return null;
         }
-        return  lat +":" +lng;
     }
 
 

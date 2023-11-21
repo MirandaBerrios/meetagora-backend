@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/gcp")
+@RequestMapping("/meetagora-services/gcp")
 @Log4j2
 public class GCPController {
     @Autowired

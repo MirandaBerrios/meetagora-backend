@@ -1,6 +1,5 @@
 package com.mirandez.meetagora.controller;
 
-import com.google.protobuf.Api;
 import com.mirandez.meetagora.entity.DataLocation;
 import com.mirandez.meetagora.entity.SubjectForFront;
 import com.mirandez.meetagora.entity.User;
@@ -19,7 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +27,7 @@ import java.util.List;
 
 @Log4j2
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/meetagora-services/user")
 public class UserController {
 
     @Autowired
@@ -115,11 +113,11 @@ public class UserController {
                 response.setResponseBody(subjectList);
                 return new ResponseEntity<>( response, HttpStatus.OK);
             }else{
-                log.info("[ API ][ ALLSUBJECT ] SUBJECT WAS NOT FOUND IT FOR ERROR ");
+                log.info("[ API ][ ALLSUBJECT ] SUBJECT WAS NOT FOUND IT OR NOT EXIST ");
                 response.setCode(ApiMessages.INTERNAL_ERROR_CODE);
                 response.setMessage(ApiMessages.FAILED);
                 response.setDescription("No sea han podido obtener las asignaturas");
-                response.setResponseBody("Verifica que el token que envias sea el correcto");
+                response.setResponseBody("Verifica el token o que poseas asignaturas");
                 return new ResponseEntity<>( response, HttpStatus.BAD_REQUEST);
             }
 

@@ -13,7 +13,7 @@ public class SubjectRequest {
     private String startAt;
     private String endAt;
     private String classroomNumber;
-    private int scheduleId;
+    private String scheduleId;
     private int dayId;
 
 }

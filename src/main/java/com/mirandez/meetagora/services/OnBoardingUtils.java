@@ -7,7 +7,7 @@ public interface OnBoardingUtils {
 
     String generateRandomToken( String rut );
 
-    int genereateIdSchedule(Header header);
+    String genereateIdSchedule(Header header);
 
 
 }

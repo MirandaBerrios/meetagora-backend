@@ -74,7 +74,6 @@
     <div id="navBar">
         <div id="left-container">
             <span><img  th:src="@{/media/logo-strech.png}" alt=""></span>
-            <!-- <span><img src="../static/media/logo-strech.png" alt=""></span> -->
         </div>
     </div>
     <div id="holi" class="col-12" style="z-index: -1;">
@@ -158,7 +157,7 @@
                         })
                     }
                     console.log("token no registrado")
-                        location.href ="http://www.google.com";
+                        location.href ="https://backend-gkhesykiqa-tl.a.run.app";
                         }
                     ,
                     error: function (error) {
@@ -168,36 +167,6 @@
         }
 
 
-        // function endSession() {
-        //     // let url = 'https://capstone-396701.uc.r.appspot.com/meetagora-services/attendance/endSession/' + token;
-        //
-        // })
-        //     let url = '/meetagora-services/attendance/endSession/' + token;
-        //     let xhr = new XMLHttpRequest();
-        //     xhr.open('GET', url, true);
-        //     xhr.onload = function() {
-        //         if (xhr.status == 200) {
-        //             let respuesta = JSON.parse(xhr.responseText);
-        //             let code = respuesta.code;
-        //             let message = respuesta.message;
-        //             let description = respuesta.description;
-        //             let responseBody = respuesta.responseBody;
-        //
-        //             Swal.fire({
-        //                 title: message,
-        //                 text: responseBody,
-        //                 icon: 'success',
-        //                 confirmButtonText: 'Aceptar'
-        //             })
-        //
-        //         } else {
-        //             console.error('Hubo un error al realizar la solicitud.');
-        //         }
-        //     };
-        //
-        //     // Enviar la solicitud
-        //     xhr.send();
-        // }
     </script>
 
 </body>

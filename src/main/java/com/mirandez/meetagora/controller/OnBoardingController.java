@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("on-boarding/v1")
+@RequestMapping("/meetagora-services/on-boarding/v1")
 @Log4j2
 public class OnBoardingController {
 
@@ -128,7 +128,7 @@ public class OnBoardingController {
                 List<Subject> subjectList = onBoardingService.extractSubjectListFromPdf(handFile);
                 Career career = onBoardingService.extractCareerFromPdf(fl);
 
-                int idSchedule = utils.genereateIdSchedule(header);
+                String idSchedule = utils.genereateIdSchedule(header);
                 schedule.setScheduleId(idSchedule);
                 User finalUser ;
 
@@ -148,7 +148,7 @@ public class OnBoardingController {
                     List<Announcement> announcementList = new ArrayList<>();
                     finalUser.setToken(finalToken);
 //                    TODO si la imagen no viene dejar una por default
-                    finalUser.setProfileImage(finalUser.getInstitutionalEmail().split("@")[0] + "-profileImage.png");
+                    finalUser.setProfileImage(finalUser.getInstitutionalEmail().split("@")[0] + "-profile.png");
                     log.info("[ API ][ LOAD SCHEDULER ] GENERATE TOKEN AS {}", finalToken);
                     List<Classroom> classroomList = new ArrayList<>();
                     subjectList.forEach(subject -> {

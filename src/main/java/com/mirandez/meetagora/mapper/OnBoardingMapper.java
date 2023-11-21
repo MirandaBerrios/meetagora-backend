@@ -85,8 +85,6 @@ public interface OnBoardingMapper {
             "#{item.subjectSection}," +
             " #{item.startAt}," +
             "#{item.endAt}," +
-//            "SUB_DATE(#{item.startAt}, interval 3 hour) ," +
-//            "SUB_DATE(#{item.endAt}, interval 3 hour) ," +
             "#{item.classroomNumber}," +
             "#{item.scheduleId}," +
             "#{item.dayId}" +

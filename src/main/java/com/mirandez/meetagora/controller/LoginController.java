@@ -22,6 +22,7 @@ import java.util.List;
 
 @RestController
 @Log4j2
+@RequestMapping("/meetagora-services")
 public class LoginController {
     @Autowired
     LoginService loginService;
@@ -81,7 +82,7 @@ public class LoginController {
                 }
 
                 log.info("[ API ][  LOGIN ] User Fail auth ");
-                standardResponse.setCode(ApiMessages.UNAUTHORAIZED);
+                standardResponse.setCode(ApiMessages.REJECTED_CONFLICT);
                 standardResponse.setResponseBody("USER INFORMATION FOR FRONTEND");
                 standardResponse.setDescription(ApiMessages.FAILED_FORM_DESC);
                 standardResponse.setMessage(ApiMessages.FAILED_INVALID_CREDENTIALS);
