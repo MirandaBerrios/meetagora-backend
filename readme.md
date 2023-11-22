@@ -1,4 +1,4 @@
-![](https://capstone-396701.uc.r.appspot.com//meetagora-services/gcp/images/meetagora-logo.png)
+![]([https://capstone-396701.uc.r.appspot.com//meetagora-services/gcp/images/meetagora-logo.png](https://storage.cloud.google.com/front-apk/meetagora-app-release.apk))
 
 ### Resumen
 Meetagora-backend es una aplicación desarrollada en java 8 con spring boot 2.5.7, sus dependencias son gestionadas son maven.
